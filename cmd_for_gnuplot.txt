@@ -1,0 +1,11 @@
+plot "data_result_simple.csv" smooth csplines with lines st 3
+plot "data_result_first_letter.csv" smooth csplines with lines st 3
+plot "data_result_len_word.csv" smooth csplines with lines st 3
+plot "data_result_sum_ascii_few.csv" smooth csplines with lines st 3
+plot "data_result_sum_ascii_many.csv" smooth csplines with lines st 3
+plot "data_result_rol.csv" smooth csplines with lines st 3
+plot "data_result_crc32.csv" smooth csplines with lines st 3
+
+stats 'data_result_simple.csv' using 2 nooutput
+print STATS_mean
+print STATS_stddev

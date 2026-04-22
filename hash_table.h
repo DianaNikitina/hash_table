@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <cstdlib>
-#define TABLE_SIZE 100
+#define TABLE_SIZE 4000
 
 typedef struct data
 {
