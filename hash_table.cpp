@@ -33,7 +33,7 @@ int main()
 
     add_hash_table(words, hash_table);
 
-    write_to_result_file(hash_table, "data_result_first_letter.csv");
+    write_to_result_file(hash_table, "data_result_crc32.csv");
 
     fclose(data);
     free(array_data.text);
