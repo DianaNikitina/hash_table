@@ -1,9 +1,10 @@
 #include "hash_table.h"
 
+static Hash_node *hash_table[TABLE_SIZE] = { nullptr };
+
 int main()
 {
     Data array_data = {.text = NULL, .count_str = 0};
-    Hash_node *hash_table[TABLE_SIZE] = { NULL }; 
 
     FILE *data = runfile("data.txt", "r");
     if (!data)  return 1;
@@ -18,7 +19,7 @@ int main()
     }
     printf("CORRECT ALLOCATED BUFFER FOR TEXT\n");
     
-    char **words = (char**) calloc(4001, sizeof(char*));
+    char **words = (char**) calloc(TABLE_SIZE * 20 + 1, sizeof(char*));
     if (!words)
     {
         printf("ERORR ALLOCATED BUFFER FOR WORDS\n");
@@ -33,7 +34,7 @@ int main()
 
     add_hash_table(words, hash_table);
 
-    write_to_result_file(hash_table, "data_result_crc32.csv");
+    write_to_result_file(hash_table, "hash_data/data_result_simple.csv");
 
     fclose(data);
     free(array_data.text);

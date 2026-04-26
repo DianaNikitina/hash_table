@@ -6,20 +6,20 @@
 #include <cstdlib>
 #define TABLE_SIZE 4000
 
-typedef struct data
+struct Data
 {
     char *text;
     int count_str;
 
-} Data;
+} ;
 
-typedef struct hash_node
+
+struct Hash_node
 {
     char *word;
     int counter;
-    struct hash_node *next;
-
-} Hash_node;
+    struct Hash_node *next;
+};
 
 size_t size_data(FILE *file);
 FILE *runfile (const char *head_file, const char *use_file);

@@ -14,10 +14,7 @@ int first_letter_hash_func (char* word)
 
 int len_word_hash_func (char* word)
 {
-    int len = 0;
-    while (word[len] != '\0')
-        len++;
-    return len;
+    return int(strlen (word));
 }
 
 int sum_ascii_hash_func (char* word)
