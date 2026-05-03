@@ -25,6 +25,7 @@ size_t size_data(FILE *file);
 FILE *runfile (const char *head_file, const char *use_file);
 void tokenize_array_data(char *array_data, char **words);
 void add_hash_table(char **words, Hash_node **hash_node);
+int find_hash_table(char *word, Hash_node **hash_table);
 int simple_hash_func (char* word);
 int first_letter_hash_func (char* word);
 int len_word_hash_func (char* word);

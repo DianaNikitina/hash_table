@@ -1,4 +1,4 @@
-g++ -D _DEBUG -ggdb3 -std=c++17 -O0 -Wall -g -Wextra -Weffc++ -Waggressive-loop-optimizations -Wc++14-compat \
+g++ -D _DEBUG -ggdb3 -std=c++17 -O3 -Wall -g -Wextra -Weffc++ -Waggressive-loop-optimizations -Wc++14-compat \
  -Wmissing-declarations -Wcast-align -Wcast-qual -Wchar-subscripts -Wconditionally-supported -Wconversion \
  -Wctor-dtor-privacy -Wempty-body -Wfloat-equal -Wformat-nonliteral -Wformat-security -Wformat-signedness -Wformat=2 \
  -Winline -Wlogical-op -Wnon-virtual-dtor -Wopenmp-simd -Woverloaded-virtual -Wpacked -Wpointer-arith -Winit-self \
@@ -8,5 +8,6 @@ g++ -D _DEBUG -ggdb3 -std=c++17 -O0 -Wall -g -Wextra -Weffc++ -Waggressive-loop-
  -Wno-missing-field-initializers -Wno-narrowing -Wno-old-style-cast -Wno-varargs -Wstack-protector -fcheck-new \
  -fsized-deallocation -fstack-protector -fstrict-overflow -flto-odr-type-merging \
  -fno-omit-frame-pointer -Wlarger-than=8192 -Wstack-usage=8192 -pie -fPIE -Werror=vla \
- hash_table.cpp hash_func.cpp add_hash_table.cpp runfile.cpp size_data.cpp tokenize_array_data.cpp write_to_result_file.cpp\
+ hash_table.cpp hash_func.cpp add_hash_table.cpp runfile.cpp size_data.cpp tokenize_array_data.cpp \
+ write_to_result_file.cpp find_hash_table.cpp\
  -o run

@@ -34,6 +34,10 @@ int main()
 
     add_hash_table(words, hash_table);
 
+   
+    int count_word = find_hash_table("next", hash_table);
+    printf("%d - count next\n", count_word);
+
     write_to_result_file(hash_table, "hash_data/data_result_simple.csv");
 
     fclose(data);
