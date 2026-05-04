@@ -6,8 +6,7 @@ void add_hash_table(char **words, Hash_node **hash_table)
 
     while (words[i] != NULL)
     {
-        int value = crc32_hash_func_intrinsic (words[i]) % TABLE_SIZE;
-        if (value < 0) value += TABLE_SIZE;
+        int value = crc32_hash_func_intrinsic_optimized (words[i]) % TABLE_SIZE;
 
 
         Hash_node *current = hash_table[value];

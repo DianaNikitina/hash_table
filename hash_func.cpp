@@ -5,16 +5,16 @@ int simple_hash_func (char* word)
     return 0;
 }
 
-int first_letter_hash_func (char* word)
+unsigned int first_letter_hash_func (char* word)
 {
     if (word != NULL)
-        return word[0];
+        return (unsigned int)word[0];
     return 0;
 }
 
-int len_word_hash_func (char* word)
+unsigned int len_word_hash_func (char* word)
 {
-    return int(strlen (word));
+    return (unsigned int)(strlen (word));
 }
 
 int sum_ascii_hash_func (char* word)
@@ -48,7 +48,7 @@ int rol_hash_func (const char *word)
 }
 
 
-int crc32_hash_func_intrinsic (char *word)
+unsigned int crc32_hash_func_intrinsic (char *word)
 {
     unsigned int crc = 0xFFFFFFFF;
 
@@ -58,10 +58,34 @@ int crc32_hash_func_intrinsic (char *word)
         word++;
     }
 
-    return int(crc ^ 0xFFFFFFFF);
+    return (crc ^ 0xFFFFFFFF);
 }
 
-int crc32_hash_func_old (char *word)
+unsigned int crc32_hash_func_intrinsic_optimized (char *word)
+{
+    uint32_t crc = 0xFFFFFFFF;
+    size_t len_word = strlen(word);
+    size_t index = 0;
+    uint32_t local_variable = 0;
+
+    while(len_word - index >= 4)
+    {
+        memcpy (&local_variable, word + index, 4);
+        crc = _mm_crc32_u32 (crc, local_variable);
+        index += 4;
+    }
+
+    while (index < len_word)
+    {
+        crc = _mm_crc32_u8 ((unsigned int)crc, (unsigned char)*(word + index));
+        index++;
+    }
+
+
+    return ((unsigned int)crc ^ 0xFFFFFFFF);
+}
+
+unsigned int crc32_hash_func_old (char *word)
 {
     unsigned int crc = 0xFFFFFFFF;
 
@@ -80,5 +104,5 @@ int crc32_hash_func_old (char *word)
         word++;
     }
 
-    return int(crc ^ 0xFFFFFFFF);
+    return (crc ^ 0xFFFFFFFF);
 }
