@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <cstdlib>
+#include <immintrin.h>
 #define TABLE_SIZE 4000
 
 struct Data
@@ -31,7 +32,8 @@ int first_letter_hash_func (char* word);
 int len_word_hash_func (char* word);
 int sum_ascii_hash_func (char* word);
 int rol_hash_func (const char *word);
-int crc32_hash_func (char *word);
+int crc32_hash_func_intrinsic (char *word);
+int crc32_hash_func_old (char *word);
 int write_to_result_file(Hash_node **hash_table, const char *data_result);
 int list_len(Hash_node *node);
 

@@ -48,7 +48,20 @@ int rol_hash_func (const char *word)
 }
 
 
-int crc32_hash_func (char *word)
+int crc32_hash_func_intrinsic (char *word)
+{
+    unsigned int crc = 0xFFFFFFFF;
+
+    while (*word)
+    {
+        crc = _mm_crc32_u8 (crc, (unsigned char)*word);
+        word++;
+    }
+
+    return int(crc ^ 0xFFFFFFFF);
+}
+
+int crc32_hash_func_old (char *word)
 {
     unsigned int crc = 0xFFFFFFFF;
 
