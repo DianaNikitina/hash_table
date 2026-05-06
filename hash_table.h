@@ -3,18 +3,22 @@
 
 #include <stdio.h>
 #include <string.h>
-#include <cstdlib>
+#include <stdlib.h>
 #include <immintrin.h>
 #include <stdint.h>
-#define TABLE_SIZE 4000
+#define TABLE_SIZE 80000
+#define COUNT_FOUNDED_WORDS 3006
 
 struct Data
 {
     char *text;
+    char *text_founded;
     char **words_data;
+    char **founded_words_data;
     FILE *data;
     FILE *founded_words;
     size_t data_size;
+    size_t founded_words_size;
     int count_str;
 
 } ;
@@ -30,7 +34,7 @@ struct Hash_node
 int init_data(Data *arrays_of_data);
 size_t size_data(FILE *file);
 FILE *runfile (const char *head_file, const char *use_file);
-void tokenize_array_data(char *array_data, char **words);
+void tokenize_array_data(char *array_data, char **words, const  int table_size);
 void add_hash_table(char **words, Hash_node **hash_node);
 int find_hash_table(char *word, Hash_node **hash_table);
 int simple_hash_func (char* word);
