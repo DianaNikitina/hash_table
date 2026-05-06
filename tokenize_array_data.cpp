@@ -3,7 +3,7 @@
 void tokenize_array_data(char *array_data, char **words)
 {
     int i = 0;
-    const char *str = " ";
+    const char *str = " ,.-!?\"';:()[]\n\t";
     char *saveptr = NULL;
     char *token = strtok_r (array_data, str, &saveptr);
     while (token != NULL && i < TABLE_SIZE*20 + 1)

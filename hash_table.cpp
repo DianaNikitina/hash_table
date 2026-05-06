@@ -4,44 +4,30 @@ static Hash_node *hash_table[TABLE_SIZE] = { nullptr };
 
 int main()
 {
-    Data array_data = {.text = NULL, .count_str = 0};
+    Data arrays_of_data = {.text = NULL, .words_data = NULL, .data = NULL, .founded_words = NULL, .data_size = 0, .count_str = 0};
 
-    FILE *data = runfile("data.txt", "r");
-    if (!data)  return 1;
+    init_data(&arrays_of_data);
 
-    size_t text_size = size_data(data);
+    size_t nread = fread(arrays_of_data.text, 1, arrays_of_data.data_size, arrays_of_data.data);
+    arrays_of_data.text[nread] = '\0';
 
-    array_data.text = (char*) calloc(text_size + 1, sizeof(char));
-    if (!array_data.text)
-    {
-        printf("ERORR ALLOCATED BUFFER FOR TEXT\n");
-        return 1;
-    }
-    printf("CORRECT ALLOCATED BUFFER FOR TEXT\n");
-    
-    char **words = (char**) calloc(TABLE_SIZE * 20 + 1, sizeof(char*));
-    if (!words)
-    {
-        printf("ERORR ALLOCATED BUFFER FOR WORDS\n");
-        return 1;
-    }
-    printf("CORRECT ALLOCATED BUFFER FOR WORDS\n");
+    tokenize_array_data(arrays_of_data.text, arrays_of_data.words_data);
 
-    size_t nread = fread(array_data.text, 1, text_size, data);
-    array_data.text[nread] = '\0';
+    add_hash_table(arrays_of_data.words_data, hash_table);
 
-    tokenize_array_data(array_data.text, words);
+    /*for (int i = 0; i < 3000; i++)
+    {*/
+        int count_word = find_hash_table("next", hash_table);
+        printf("%d - count next\n", count_word);
+    /*}*/
 
-    add_hash_table(words, hash_table);
-
-    int count_word = find_hash_table("next", hash_table);
-    printf("%d - count next\n", count_word);
 
     write_to_result_file(hash_table, "hash_data/data_result_simple.csv");
 
-    fclose(data);
-    free(array_data.text);
-    free(words);
+    fclose(arrays_of_data.data);
+    fclose(arrays_of_data.founded_words);
+    free(arrays_of_data.text);
+    free(arrays_of_data.words_data);
     return 0;
 }
 

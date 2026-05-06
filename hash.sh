@@ -9,5 +9,5 @@ g++ -D _DEBUG -ggdb3 -std=c++17 -O3 -msse4.2 -Wall -g -Wextra -Weffc++ -Waggress
  -fsized-deallocation -fstack-protector -fstrict-overflow -flto-odr-type-merging \
  -fno-omit-frame-pointer -Wlarger-than=8192 -Wstack-usage=8192 -pie -fPIE -Werror=vla \
  hash_table.cpp hash_func.cpp add_hash_table.cpp runfile.cpp size_data.cpp tokenize_array_data.cpp \
- write_to_result_file.cpp find_hash_table.cpp\
+ write_to_result_file.cpp find_hash_table.cpp init_data.cpp\
  -o run

@@ -11,6 +11,10 @@
 struct Data
 {
     char *text;
+    char **words_data;
+    FILE *data;
+    FILE *founded_words;
+    size_t data_size;
     int count_str;
 
 } ;
@@ -23,6 +27,7 @@ struct Hash_node
     struct Hash_node *next;
 };
 
+int init_data(Data *arrays_of_data);
 size_t size_data(FILE *file);
 FILE *runfile (const char *head_file, const char *use_file);
 void tokenize_array_data(char *array_data, char **words);
