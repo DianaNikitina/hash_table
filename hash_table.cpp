@@ -19,11 +19,7 @@ int main()
     
     add_hash_table(arrays_of_data.words_data, hash_table);
 
-    char ** found_words = arrays_of_data.founded_words_data;
-    for (int i = 0; i < 3006; i++)
-    {
-        find_hash_table(found_words[i], hash_table);
-    }
+    find(arrays_of_data.founded_words_data, hash_table);
 
     write_to_result_file(hash_table, "hash_data/data_result_simple.csv");
 

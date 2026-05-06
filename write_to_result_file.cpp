@@ -21,7 +21,6 @@ int write_to_result_file(Hash_node **hash_table, const char *head_file)
         int len = list_len(hash_table[value]);
         fprintf(data_result, "%d %d\n", value, len);
         fputc(' ', data_result);
-       
 
     }
     return 0;
