@@ -34,7 +34,7 @@ struct Hash_node
 int init_data(Data *arrays_of_data);
 size_t size_data(FILE *file);
 FILE *runfile (const char *head_file, const char *use_file);
-void find(char **found_words, Hash_node **hash_table);
+int find(char **found_words, Hash_node **hash_table);
 void tokenize_array_data(char *array_data, char **words, const  int table_size);
 void add_hash_table(char **words, Hash_node **hash_node);
 int find_hash_table(char *word, Hash_node **hash_table);

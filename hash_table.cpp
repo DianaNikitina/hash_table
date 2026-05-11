@@ -19,7 +19,9 @@ int main()
     
     add_hash_table(arrays_of_data.words_data, hash_table);
 
-    find(arrays_of_data.founded_words_data, hash_table);
+    
+    int result = find(arrays_of_data.founded_words_data, hash_table);
+    printf("%d - result\n", result);
 
     write_to_result_file(hash_table, "hash_data/data_result_simple.csv");
 

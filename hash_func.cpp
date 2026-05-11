@@ -2,6 +2,7 @@
 
 int simple_hash_func (char* word)
 {
+    (void) word;
     return 0;
 }
 
