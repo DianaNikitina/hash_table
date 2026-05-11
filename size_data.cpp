@@ -1,6 +1,6 @@
 #include "hash_table.h"
 
-size_t size_data(FILE *file)
+size_t DataSize(FILE *file)
 {
     long int size = 0;
     

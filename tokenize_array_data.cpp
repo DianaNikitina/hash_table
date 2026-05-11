@@ -1,12 +1,12 @@
 #include "hash_table.h"
 
-void tokenize_array_data(char *array_data, char **words, const  int table_size)
+void DataTokenizeArray(char *array_data, char **words, const int count_words)
 {
     int i = 0;
     const char *str = " ,.-!?\"';:()[]\n\t";
     char *saveptr = NULL;
     char *token = strtok_r (array_data, str, &saveptr);
-    while (token != NULL && i < table_size + 1)
+    while (token != NULL && i < count_words)
     {
         words[i] = token;
         i++;

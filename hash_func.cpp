@@ -1,24 +1,24 @@
 #include "hash_table.h"
 
-int simple_hash_func (char* word)
+unsigned int simple_hash_func (const char* word)
 {
     (void) word;
     return 0;
 }
 
-unsigned int first_letter_hash_func (char* word)
+unsigned int first_letter_hash_func (const char* word)
 {
     if (word != NULL)
         return (unsigned int)word[0];
     return 0;
 }
 
-unsigned int len_word_hash_func (char* word)
+unsigned int len_word_hash_func (const char* word)
 {
     return (unsigned int)(strlen (word));
 }
 
-int sum_ascii_hash_func (char* word)
+unsigned int sum_ascii_hash_func (const char* word)
 {
     int ascii_sum = 0;
     int i = 0;
@@ -27,7 +27,7 @@ int sum_ascii_hash_func (char* word)
         ascii_sum += word[i];
         i++;
     }
-    return ascii_sum;
+    return (unsigned int) ascii_sum;
 }
 
 static int rotl32 (int x, unsigned k)
@@ -35,7 +35,7 @@ static int rotl32 (int x, unsigned k)
     return (x << k) | (x >> (32 - k));
 }
 
-int rol_hash_func (const char *word)
+unsigned int rol_hash_func (const char *word)
 {
     int h = 0;
 
@@ -45,11 +45,11 @@ int rol_hash_func (const char *word)
         h ^= *p;            
     }
 
-    return h;
+    return (unsigned int) h;
 }
 
 
-unsigned int crc32_hash_func_intrinsic (char *word)
+unsigned int crc32_hash_func_intrinsic (const char *word)
 {
     unsigned int crc = 0xFFFFFFFF;
 
@@ -62,7 +62,7 @@ unsigned int crc32_hash_func_intrinsic (char *word)
     return (crc ^ 0xFFFFFFFF);
 }
 
-unsigned int crc32_hash_func_intrinsic_optimized (char *word)
+unsigned int crc32_hash_func_intrinsic_optimized (const char *word)
 {
     uint32_t crc = 0xFFFFFFFF;
     size_t len_word = strlen(word);
@@ -86,7 +86,7 @@ unsigned int crc32_hash_func_intrinsic_optimized (char *word)
     return ((unsigned int)crc ^ 0xFFFFFFFF);
 }
 
-unsigned int crc32_hash_func_old (char *word)
+unsigned int crc32_hash_func_old (const char *word)
 {
     unsigned int crc = 0xFFFFFFFF;
 

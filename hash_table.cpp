@@ -1,36 +1,38 @@
 #include "hash_table.h"
 
+unsigned int time_genera;
 
 int main()
 {
-    Hash_node **hash_table = (Hash_node**)calloc(TABLE_SIZE+1, sizeof(Hash_node*));
-    Data arrays_of_data = {.text = NULL, .words_data = NULL, .data = NULL, .founded_words = NULL, .data_size = 0, .count_str = 0};
+    /*const char* test_words[3] = {"next", "animal", "cat"};
+    for (int i = 0; i < 3; i++)
+    {
+        uint32_t hash_value_old = crc32_hash_func_old(test_words[i]);
+        uint32_t hash_value_asm = crc32_hash_asm_no_strlen(test_words[i]);
+        printf ("%u - hash_value_old\n %u - hash_value_asm\n", hash_value_old, hash_value_asm);
 
-    init_data(&arrays_of_data);
+    }*/
 
-    size_t nread = fread(arrays_of_data.text, 1, arrays_of_data.data_size, arrays_of_data.data);
-    arrays_of_data.text[nread] = '\0';
+    HashTable hash_table = {0};
+    HashTableErr_t error = HashTableInit(&hash_table, TABLE_SIZE);
 
-    size_t nread_founded = fread(arrays_of_data.text_founded, 1, arrays_of_data.founded_words_size, arrays_of_data.founded_words);
-    arrays_of_data.text_founded[nread_founded] = '\0';
-
-    tokenize_array_data(arrays_of_data.text, arrays_of_data.words_data, TABLE_SIZE);
-    tokenize_array_data(arrays_of_data.text_founded, arrays_of_data.founded_words_data, COUNT_FOUNDED_WORDS);
+    Data DataArrays = {0};
+    Files Files = {0};
+    DataProcessing(&DataArrays, &Files);
     
-    add_hash_table(arrays_of_data.words_data, hash_table);
+    error = HashTableAdd(DataArrays.words_data, &hash_table);
+    printf("======================================\n\n");
 
-    
-    int result = find(arrays_of_data.founded_words_data, hash_table);
+    int result = HashTableFind(DataArrays.founded_words_data, &hash_table);
     printf("%d - result\n", result);
 
-    write_to_result_file(hash_table, "hash_data/data_result_simple.csv");
+    printf("cycles: %ld\n", time_general/111217000);
 
-    fclose(arrays_of_data.data);
-    fclose(arrays_of_data.founded_words);
-    free(arrays_of_data.text);
-    free(arrays_of_data.words_data);
-    free(arrays_of_data.founded_words_data);
-    free(arrays_of_data.text_founded);
+    WriteToFile(&hash_table, "hash_data/data_result_simple.csv");
+
+    HashTableDestroy(&hash_table);
+    DataDestroy(&DataArrays, &Files);
+
     return 0;
 }
 
