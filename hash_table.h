@@ -70,18 +70,18 @@ struct Files
     int count_str; 
 } ;
 
-HashTableErr_t HashTableInit(HashTable *hash_table, size_t capacity);
-HashTableErr_t HashTableAdd(char **words, HashTable *hash_table);
-int DataInit(Data *DataArrays, Files *Files);
-FILE *Runfile (const char *head_file, const char *use_file);
-size_t DataSize(FILE *file);
-void DataProcessing(Data *DataArrays, Files *Files);
-HashTableErr_t HashTableVerify(HashTable* hash_table);
-void HashTableDump(HashTable *hash_table, HashTableErr_t error, const char *file, const char *function, int line);
-void DataTokenizeArray(char *array_data, char **words, const  int table_size);
-int HashTableFind(char **found_words, HashTable *hash_table);
-WordEntry* FindInBucket(const list *bucket, const char *word);
-WordEntry *Find(const char *word, HashTable *hash_table);
+HashTableErr_t HashTableInit    (HashTable *hash_table, size_t capacity);
+HashTableErr_t HashTableAdd     (char **words, HashTable *hash_table);
+HashTableErr_t HashTableVerify  (HashTable* hash_table);
+WordEntry*     FindInBucket     (const list *bucket, const char *word);
+WordEntry*     Find             (const char *word, HashTable *hash_table);
+FILE*          Runfile          (const char *head_file, const char *use_file);
+size_t         DataSize         (FILE *file);
+int            DataInit         (Data *DataArrays, Files *Files);
+int            HashTableFind    (char **found_words, HashTable *hash_table);
+void           DataProcessing   (Data *DataArrays, Files *Files);
+void           HashTableDump    (HashTable *hash_table, HashTableErr_t error, const char *file, const char *function, int line);
+void           DataTokenizeArray(char *array_data, char **words, const  int table_size);
 
 //======================================
 // hash func

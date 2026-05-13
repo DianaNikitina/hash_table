@@ -16,7 +16,7 @@ HashTableErr_t HashTableInit(HashTable *hash_table, size_t capacity)
     for (int i = 0; i < TABLE_SIZE; i++)
         ListInit(&hash_table->Buckets[i], COUNT_WORDS);
 
-    hash_table->HashFunction = &simple_hash_func;
+    hash_table->HashFunction = &crc32_hash_asm_no_strlen;
 
     HASH_TABLE_OK(hash_table, error);
     return HASH_CORRECT;

@@ -21,7 +21,6 @@ int main()
     DataProcessing(&DataArrays, &Files);
     
     error = HashTableAdd(DataArrays.words_data, &hash_table);
-    printf("======================================\n\n");
 
     int result = HashTableFind(DataArrays.founded_words_data, &hash_table);
     printf("%d - result\n", result);
